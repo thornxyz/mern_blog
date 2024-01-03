@@ -35,7 +35,21 @@ header a {
 
 header a.logo {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.9rem;
+}
+
+header nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header span.name {
+    background-color: #333;
+    padding: 7px 6px;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 350;
 }
 
 header nav {
