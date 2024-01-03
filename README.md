@@ -1,2 +1,3 @@
-# Full Stack Blog application made using react
- mern stack
+# Full Stack Blog application
+
+ made using the mern stack
