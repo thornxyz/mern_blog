@@ -12,7 +12,7 @@ export default function Header() {
         setUserInfo(userInfo);
       });
     });
-  }, []);
+  }, [setUserInfo]);
 
   function logout() {
     fetch("http://localhost:4000/logout", {
@@ -34,7 +34,7 @@ export default function Header() {
           <>
             <span className="name">Hello, {username}</span>
             <Link to="/create">Create new post</Link>
-            <a onClick={logout}>Logout</a>
+            <Link onClick={logout}>Logout</Link>
           </>
         )}
         {!username && (

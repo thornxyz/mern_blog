@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { format } from "date-fns";
-import { UserContext } from "../UserContext";
+import { UserContext } from "../components/UserContext";
 
 export default function PostPage() {
   const [postInfo, setPostInfo] = useState(null);
@@ -13,7 +13,7 @@ export default function PostPage() {
         setPostInfo(postInfo);
       });
     });
-  }, []);
+  }, [id]);
 
   if (!postInfo) return "";
 
