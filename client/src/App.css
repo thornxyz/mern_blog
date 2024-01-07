@@ -73,6 +73,17 @@ div.post {
     }
 }
 
+div.post div.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.post img {
+    max-height: 250px;
+    width: auto;
+}
+
 div.post div.texts h2 {
     margin: 0;
     font-size: 1.8rem;

@@ -6,24 +6,40 @@ export default function CreatePost() {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [content, setContent] = useState("");
-  const [files, setFiles] = useState("");
+  const [file, setFile] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function createNewPost(ev) {
+
+    ev.preventDefault();
+
+    if (isSubmitting) {
+      return;
+    }
+
+    setIsSubmitting(true);
+
     const data = new FormData();
     data.set("title", title);
     data.set("summary", summary);
     data.set("content", content);
-    data.set("file", files[0]);
-    ev.preventDefault();
+    data.set("file", file);
 
-    const response = await fetch("http://localhost:4000/post", {
-      method: "POST",
-      body: data,
-      credentials: 'include',
-    });
-    if (response.ok) {
-      setRedirect(true);
+    try {
+      const response = await fetch("http://localhost:4000/post", {
+        method: "POST",
+        body: data,
+        credentials: 'include',
+      });
+
+      if (response.ok) {
+        setRedirect(true);
+      }
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -45,9 +61,9 @@ export default function CreatePost() {
         value={summary}
         onChange={(ev) => setSummary(ev.target.value)}
       />
-      <input type="file" onChange={(ev) => setFiles(ev.target.files)} />
+      <input type="file" onChange={(ev) => setFile(ev.target.files[0])} />
       <Editor value={content} onChange={setContent} />
-      <button style={{ marginTop: "5px" }}>Create Post</button>
+      <button type="submit" style={{ marginTop: "5px" }} disabled={isSubmitting}>{isSubmitting? 'Creating Post...':'Create Post'}</button>
     </form>
   );
 }
