@@ -11,7 +11,6 @@ export default function CreatePost() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function createNewPost(ev) {
-
     ev.preventDefault();
 
     if (isSubmitting) {

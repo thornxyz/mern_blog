@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -23,14 +24,14 @@ const storage = new CloudinaryStorage({
 const uploadMiddleware = multer({ storage: storage });
 
 const salt = bcrypt.genSaltSync(10);
-const secret = 'man_horse@1234';
+const secret = process.env.SALT;
 
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
-mongoose.connect('mongodb+srv://thorn:blog12345@cluster0.sagyidg.mongodb.net/?retryWrites=true&w=majority');
+mongoose.connect(process.env.MONGO_URI);
 
 mongoose.connection.on('connected', () => {
     console.log('Connected to MongoDB');
@@ -121,7 +122,7 @@ app.put('/post/:id', uploadMiddleware.single('file'), async (req, res) => {
     if (req.file) {
         const cloudinaryResponse = await cloudinary.uploader.upload(req.file.path, {
             folder: 'mern-blog',
-            allowed_formats: ['jpg', 'jpeg', 'png', 'gif'],
+            allowed_formats: ['jpg', 'jpeg', 'png', 'gif', 'avif', 'webp'],
         });
 
         newPath = cloudinaryResponse.secure_url;
