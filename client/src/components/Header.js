@@ -4,6 +4,7 @@ import { UserContext } from "./UserContext";
 
 export default function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext);
+
   useEffect(() => {
     fetch("http://localhost:4000/profile", {
       credentials: "include",
@@ -14,12 +15,16 @@ export default function Header() {
     });
   }, [setUserInfo]);
 
-  function logout() {
-    fetch("http://localhost:4000/logout", {
-      credentials: "include",
-      method: "POST",
-    });
-    setUserInfo(null);
+  async function logout() {
+    try {
+      await fetch("http://localhost:4000/logout", {
+        credentials: "include",
+        method: "POST",
+      });
+      setUserInfo(null);
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   }
 
   const username = userInfo?.username;
@@ -34,7 +39,7 @@ export default function Header() {
           <>
             <span className="name">Hello, {username}</span>
             <Link to="/create">Create new post</Link>
-            <Link onClick={logout}>Logout</Link>
+            <Link to = "/" onClick={logout}>Logout</Link>
           </>
         )}
         {!username && (

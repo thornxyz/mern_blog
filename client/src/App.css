@@ -136,6 +136,13 @@ div.button {
     justify-content: center;
 }
 
+div.edit-form-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
 button {
     font-size:15px;
     cursor: pointer;
