@@ -1,5 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap");
+
 * {
     box-sizing: border-box;
+    font-family: "Inter", sans-serif;
 }
 
 a {
@@ -9,11 +12,6 @@ a {
 body {
     color: #222;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 img {
@@ -41,7 +39,7 @@ header a {
 
 header a.logo {
     font-weight: bold;
-    font-size: 1.9rem;
+    font-size: 2.5rem;
 }
 
 header nav {
@@ -86,7 +84,7 @@ div.post img {
 
 div.post div.texts h2 {
     margin: 0;
-    font-size: 1.8rem;
+    font-size: 1.9rem;
 }
 
 div.post div.texts a {
@@ -97,9 +95,10 @@ div.post div.texts a {
 div.post p.info {
     margin: 6px 0;
     color: #888;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: bold;
     display: flex;
+    align-items: center;
     gap: 10px;
 }
 
@@ -110,6 +109,7 @@ div.post p.info a.author {
 div.post p.summary {
     margin: 10px 0;
     line-height: 1.4rem;
+    font-size: 1.2rem;
 }
 
 form.login,
@@ -120,23 +120,45 @@ form.register {
 
 input {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 25px;
+    height: 40px;
     width: 100%;
-    padding: 5px 7px;
-    border: 2px solid #ddd;
+    padding: 10px;
+    border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #fff;
+    font-size: 14px;
+}
+
+div.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 button {
+    font-size:15px;
     cursor: pointer;
-    width: 100%;
+    width: 90%;
     display: block;
-    background-color: #555;
-    border: 0;
+    background-color: #3e8e41;
+    margin-top: 4px;
+    border: none;
     color: #fff;
-    border-radius: 5px;
-    padding: 7px 0;
+    border-radius: 6px;
+    padding: 10px;
+    height: 40px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: rgb(91, 89, 89);
+}
+
+div.form-heading {
+    margin-bottom: 2px;
+    margin-left: 2px;
+    font-weight: 600;
 }
 
 form.login h1,
@@ -145,7 +167,7 @@ form.register h1 {
 }
 
 div.post-page div.image {
-    max-height: 200px;
+    max-height: 300px;
     display: flex;
     overflow: hidden;
 }
