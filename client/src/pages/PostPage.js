@@ -7,7 +7,7 @@ export default function PostPage() {
   const [postInfo, setPostInfo] = useState(null);
   const { userInfo } = useContext(UserContext);
   const { id } = useParams();
-  
+
   useEffect(() => {
     fetch(`http://localhost:4000/post/${id}`).then((response) => {
       response.json().then((postInfo) => {
@@ -20,10 +20,10 @@ export default function PostPage() {
 
   return (
     <div className="post-page">
-      <h1>{postInfo.title}</h1>
+      <div className="heading">{postInfo.title}</div>
       <time>{format(new Date(postInfo.createdAt), "MMM d, yyyy HH:mm")}</time>
       <div className="author">by @{postInfo.author.username}</div>
-      {userInfo && postInfo.author && userInfo.id === postInfo.author._id &&(
+      {userInfo && postInfo.author && userInfo.id === postInfo.author._id && (
         <div className="edit-row">
           <Link className="edit-btn" to={`/edit/${postInfo._id}`}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
