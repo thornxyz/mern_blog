@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap");
 
+:root {
+    --green-button: #449a4a;
+    --green-button-faded: #449a4ab5;
+    --grey-button: rgb(91, 89, 89);
+}
+
 * {
     box-sizing: border-box;
     font-family: "Inter", sans-serif;
@@ -12,18 +18,19 @@ a {
 body {
     color: #222;
     padding: 10px;
-    max-width: 960px;
+    max-width: 1024px;
     margin: 0 auto;
 }
 
 img {
+    border-radius: 2px;
     max-width: 100%;
 }
 
 header {
     display: flex;
     justify-content: space-between;
-    padding-top: 20px;
+    padding-top: 10px;
     padding-bottom: 40px;
     align-items: center;
 }
@@ -44,71 +51,115 @@ header nav {
     align-items: center;
 }
 
-header span.name {
-    font-weight: 500;
-    font-size: 1rem;
-}
-
 header nav {
     display: flex;
-    gap: 15px;
+    gap: 18px;
 }
 
-div.post {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    margin-bottom: 50px;
+.post {
+    display: flex;
+    margin-bottom: 30px;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    max-width: 1024px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
-@media screen and (min-width: 650px) {
-    div.post {
-        grid-template-columns: 0.9fr 1.1fr;
+@media screen and (max-width: 768px) {
+    .post {
+        flex-direction: column;
+        margin-left: 0;
+        margin-right: 0;
     }
+
+    .post .image {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .post .texts {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .post img {
+        width: 100%;
+        height: auto;
+    }
+
+    form.login,
+    form.register {
+        max-width: 100%;
+    }
+
 }
 
-div.post div.image {
+.post .image {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: auto;
 }
 
-div.post img {
-    height: 200px;
-    width: auto;
-    width: 350px;
+.post img {
+    height: 150px;
+    width: 240px;
     object-fit: cover;
     object-position: center center;
+    max-height: 180px;
+    max-width: 288px;
 }
 
-div.post div.texts h2 {
-    margin: 0;
-    font-size: 1.9rem;
+.post .texts {
+    margin-right: 50px;
+    margin-left: 10px;
+    margin-bottom: 20px;
 }
 
-div.post div.texts a {
+.post .texts h2 {
+    margin: 1px;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.post .texts a {
     text-decoration: none;
     color: inherit;
 }
 
-div.post p.info {
-    margin: 6px 0;
+.post p.info {
+    margin-bottom: auto;
+    margin-top: 11px;
     color: #888;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 10px;
 }
 
-div.post p.info a.author {
-    color: #333;
+.post .info time {
+    font-weight: 500;
+    margin-left: 0.8rem;
 }
 
-div.post p.summary {
+.post .post-summary {
+    width: 100%;
+    max-width: 650px;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: auto;
+}
+
+.post p.summary {
     margin: 10px 0;
-    line-height: 1.4rem;
-    font-size: 1.1rem;
+    font-weight: 400;
+    font-size: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    text-align: justify;
 }
 
 form.login,
@@ -129,13 +180,14 @@ input {
     font-size: 14px;
 }
 
-div.button {
+.button {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-div.edit-form-button {
+.edit-form-button,
+.create-button-form {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -143,7 +195,7 @@ div.edit-form-button {
 }
 
 button {
-    font-size:15px;
+    font-size: 15px;
     cursor: pointer;
     width: 90%;
     display: block;
@@ -158,10 +210,10 @@ button {
 }
 
 button:hover {
-    background-color: rgb(91, 89, 89);
+    background-color: var(--grey-button);
 }
 
-div.form-heading {
+.form-heading {
     margin-bottom: 2px;
     margin-left: 2px;
     font-weight: 600;
@@ -172,64 +224,152 @@ form.register h1 {
     text-align: center;
 }
 
-div.post-page div.image {
+.post-page .image {
     max-height: 300px;
     display: flex;
     overflow: hidden;
 }
 
-div.post-page div.image img {
+.post-page .image img {
     object-fit: cover;
     object-position: center center;
     width: 100%;
 }
 
-div.post-page a {
+.post-page a {
     color: #333;
     text-decoration: underline;
 }
 
-div.post-page div.heading {
+.post-page .heading {
     text-align: center;
     margin-bottom: 15px;
-    font-size: 1.8rem;
-    font-weight: 600;
-}
-
-div.post-page time {
-    text-align: center;
-    display: block;
-    font-size: 0.7rem;
-    color: #aaa;
-}
-
-div.post-page div.author {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 0.7rem;
+    font-size: 2rem;
     font-weight: bold;
 }
 
-div.post-page div.content p {
+.post-page time {
+    text-align: center;
+    display: block;
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: 500;
+}
+
+.post-page .author {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #403f3f;
+}
+
+.post-page .content p {
     line-height: 1.6rem;
 }
 
-div.edit-row {
+.edit-row {
     text-align: center;
     margin-bottom: 20px;
-}
-
-div.post-page a.edit-btn {
-    background-color: #333;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    color: #fff;
-    border-radius: 5px;
-    padding: 15px 30px;
-    text-decoration: none;
 }
 
 a svg {
     height: 20px;
+}
+
+header nav .logout-button {
+    background-color: #fff;
+    color: rgb(184, 57, 57);
+    padding: 10px 14px;
+    border-radius: 4px;
+    border: 1px solid rgb(184, 57, 57);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+}
+
+header nav .logout-button:hover {
+    background-color: rgb(184, 57, 57);
+    color: #fff;
+}
+
+header nav .create-button {
+    background-color: #fff;
+    color: var(--green-button);
+    padding: 10px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid var(--green-button);
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+}
+
+header nav .create-button:hover {
+    background-color: var(--green-button);
+    color: #fff;
+}
+
+header nav .login-button {
+    background-color: #fff;
+    padding: 10px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+}
+
+header nav .login-button:hover {
+    background-color: var(--green-button-faded);
+    color: #fff;
+}
+
+
+header nav .register-button {
+    background-color: #fff;
+    color: var(--green-button);
+    padding: 10px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid var(--green-button);
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+}
+
+header nav .register-button:hover {
+    background-color: var(--green-button);
+    color: #fff;
+}
+
+header span.name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #666565;
+}
+
+.post-page a.edit-btn {
+    background-color: #fff;
+    text-decoration: none;
+    color: var(--green-button);
+    padding: 10px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid var(--green-button);
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 170px;
+}
+
+.post-page a.edit-btn:hover {
+    background-color: var(--green-button);
+    color: #fff;
+}
+
+.post-page .edit-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

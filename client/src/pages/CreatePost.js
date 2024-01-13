@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import Editor from "../components/Editor";
 
+const MAX_SUMMARY_CHARACTERS = 300;
+
 export default function CreatePost() {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
@@ -10,10 +12,20 @@ export default function CreatePost() {
   const [redirect, setRedirect] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const setSummaryWithLimit = (input) => {
+    const truncatedSummary = input.slice(0, MAX_SUMMARY_CHARACTERS);
+    setSummary(truncatedSummary);
+  };
+
   async function createNewPost(ev) {
     ev.preventDefault();
 
     if (isSubmitting) {
+      return;
+    }
+
+    if (!title.trim() || !summary.trim() || !content.trim() || !file) {
+      alert("Please fill in all the details!");
       return;
     }
 
@@ -58,11 +70,13 @@ export default function CreatePost() {
         type="summary"
         placeholder={"Summary"}
         value={summary}
-        onChange={(ev) => setSummary(ev.target.value)}
+        onChange={(ev) => setSummaryWithLimit(ev.target.value)}
       />
       <input type="file" onChange={(ev) => setFile(ev.target.files[0])} />
       <Editor value={content} onChange={setContent} />
-      <button type="submit" style={{ marginTop: "5px" }} disabled={isSubmitting}>{isSubmitting? 'Creating Post...':'Create Post'}</button>
+      <div className="create-button-form">
+        <button type="submit" style={{ marginTop: "5px" }} disabled={isSubmitting}>{isSubmitting ? 'Creating Post...' : 'Create Post'}</button>
+      </div>
     </form>
   );
 }

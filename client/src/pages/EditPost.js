@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import Editor from "../components/Editor";
 
+const MAX_SUMMARY_CHARACTERS = 300;
+
 export default function EditPost() {
   const { id } = useParams();
   const [title, setTitle] = useState("");
@@ -9,6 +11,12 @@ export default function EditPost() {
   const [content, setContent] = useState("");
   const [files, setFiles] = useState("");
   const [redirect, setRedirect] = useState(false);
+
+  const setSummaryWithLimit = (input) => {
+    const truncatedSummary = input.slice(0, MAX_SUMMARY_CHARACTERS);
+    setSummary(truncatedSummary);
+  };
+
 
   useEffect(() => {
     fetch(`http://localhost:4000/post/${id}`).then((response) => {
@@ -56,7 +64,7 @@ export default function EditPost() {
         type="summary"
         placeholder={"Summary"}
         value={summary}
-        onChange={(ev) => setSummary(ev.target.value)}
+        onChange={(ev) => setSummaryWithLimit(ev.target.value)}
       />
       <input type="file" onChange={(ev) => setFiles(ev.target.files)} />
       <Editor onChange={setContent} value={content} />
