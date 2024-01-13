@@ -12,7 +12,7 @@ export default function Post({ _id, title, summary, cover, content, createdAt, a
           <p className="summary">{summary}</p>
         </div>
         <p className="info">
-          <a className="author">{'@' + author.username}</a>
+          <a href="/#" className="author">{'@' + author.username}</a>
           <time>{format(new Date(createdAt), 'MMM d, yyyy HH:mm')}</time>
         </p>
       </div>

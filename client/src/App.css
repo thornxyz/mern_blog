@@ -11,8 +11,15 @@
     font-family: "Inter", sans-serif;
 }
 
+p {
+    font-size: 1rem;
+}
+
 a {
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+    color: inherit;
 }
 
 body {
@@ -35,31 +42,24 @@ header {
     align-items: center;
 }
 
-header a {
-    text-decoration: none;
-    color: inherit;
-}
-
-header a.logo {
+.logo {
     font-weight: bold;
     font-size: 2.5rem;
+    text-decoration: none;
+    color: inherit;
 }
 
 header nav {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-header nav {
-    display: flex;
     gap: 18px;
 }
 
 .post {
-    display: flex;
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
     margin-bottom: 30px;
-    flex-direction: row;
     position: relative;
     width: 100%;
     max-width: 1024px;
@@ -67,11 +67,85 @@ header nav {
     margin-right: 10px;
 }
 
-@media screen and (max-width: 768px) {
+.hamburger-icon {
+    height: 2rem;
+    margin-right: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sm-header-top {
+    position: fixed;
+    top: 0;
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    align-items: center;
+    justify-items: center;
+    background-color: #fff;
+    width: 100%;
+    z-index: 1;
+}
+
+.name {
+    margin-left: auto;
+    margin-right: 25px;
+}
+
+.hamburger-expanded {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100vh;
+    padding-left: 10px;
+    padding-right: 55px;
+    width: 60%;
+    padding-top: 30px;
+    background-color: #FFFFFF;
+    z-index: 2;
+    transition: transform 0.3s ease-in-out;
+}
+
+.responsive_nav {
+    transform: translateX(-100vh);
+}
+
+@media screen and (min-width: 650px) {
+    .sm-header {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    body {
+        margin-top: 68px;
+        padding: 0 10px;
+    }
+
+    .logo {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 0.7rem;
+    }
+
+    p.summary {
+        height: 66px;
+        width: 200px;
+    }
+
+    header {
+        display: none;
+    }
+
     .post {
-        flex-direction: column;
         margin-left: 0;
         margin-right: 0;
+        margin-bottom: 10px;
+        grid-template-columns: 1fr 1fr;
     }
 
     .post .image {
@@ -84,9 +158,21 @@ header nav {
         margin-left: 0;
     }
 
+    .post .texts h2 {
+        font-size: 1.2rem;
+    }
+
     .post img {
-        width: 100%;
-        height: auto;
+        height: 100px;
+        width: 160px;
+        object-fit: cover;
+        object-position: center center;
+    }
+
+    .post .image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     form.login,
@@ -96,20 +182,21 @@ header nav {
 
 }
 
-.post .image {
+button .post .image {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: auto;
 }
 
-.post img {
+img {
     height: 150px;
     width: 240px;
+}
+
+.post img {
     object-fit: cover;
     object-position: center center;
-    max-height: 180px;
-    max-width: 288px;
 }
 
 .post .texts {
@@ -120,7 +207,6 @@ header nav {
 
 .post .texts h2 {
     margin: 1px;
-    font-size: 1.4rem;
     font-weight: bold;
 }
 
@@ -133,7 +219,6 @@ header nav {
     margin-bottom: auto;
     margin-top: 11px;
     color: #888;
-    font-size: 0.85rem;
     font-weight: bold;
 }
 
@@ -154,12 +239,13 @@ header nav {
 .post p.summary {
     margin: 10px 0;
     font-weight: 400;
-    font-size: 1rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
     text-overflow: ellipsis;
     text-align: justify;
+    max-height: 150px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
 }
 
 form.login,
@@ -277,7 +363,7 @@ a svg {
     height: 20px;
 }
 
-header nav .logout-button {
+.logout-button {
     background-color: #fff;
     color: rgb(184, 57, 57);
     padding: 10px 14px;
@@ -288,12 +374,12 @@ header nav .logout-button {
     transition: all 0.2s ease-in-out;
 }
 
-header nav .logout-button:hover {
+.logout-button:hover {
     background-color: rgb(184, 57, 57);
     color: #fff;
 }
 
-header nav .create-button {
+.create-button {
     background-color: #fff;
     color: var(--green-button);
     padding: 10px 14px;
@@ -304,12 +390,12 @@ header nav .create-button {
     transition: all 0.2s ease-in-out;
 }
 
-header nav .create-button:hover {
+.create-button:hover {
     background-color: var(--green-button);
     color: #fff;
 }
 
-header nav .login-button {
+.login-button {
     background-color: #fff;
     padding: 10px 14px;
     border-radius: 4px;
@@ -319,13 +405,13 @@ header nav .login-button {
     transition: all 0.2s ease-in-out;
 }
 
-header nav .login-button:hover {
+.login-button:hover {
     background-color: var(--green-button-faded);
     color: #fff;
 }
 
 
-header nav .register-button {
+.register-button {
     background-color: #fff;
     color: var(--green-button);
     padding: 10px 14px;
@@ -336,12 +422,12 @@ header nav .register-button {
     transition: all 0.2s ease-in-out;
 }
 
-header nav .register-button:hover {
+.register-button:hover {
     background-color: var(--green-button);
     color: #fff;
 }
 
-header span.name {
+span.name {
     font-weight: 600;
     font-size: 1rem;
     color: #666565;
