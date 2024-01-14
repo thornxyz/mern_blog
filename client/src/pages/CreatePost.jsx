@@ -59,7 +59,7 @@ export default function CreatePost() {
   }
 
   return (
-    <form onSubmit={createNewPost}>
+    <form className="create-post-form" onSubmit={createNewPost}>
       <input
         type="title"
         placeholder={"Title"}

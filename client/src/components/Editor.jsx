@@ -1,5 +1,6 @@
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import PropTypes from "prop-types";
 
 export default function Editor({ value, onChange }) {
   const modules = {
@@ -26,3 +27,8 @@ export default function Editor({ value, onChange }) {
     />
   );
 }
+
+Editor.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
