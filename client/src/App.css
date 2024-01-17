@@ -124,6 +124,10 @@ header nav {
         padding: 0 10px;
     }
 
+    p.info {
+        font-size: 0.8rem;
+    }
+
     .logo {
         font-size: 2rem;
     }
@@ -131,6 +135,7 @@ header nav {
     p.summary {
         height: 66px;
         width: 200px;
+        font-size: 0.85rem;
     }
 
     header {

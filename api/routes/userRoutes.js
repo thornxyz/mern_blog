@@ -43,8 +43,13 @@ router.post('/login', async (req, res) => {
 
 router.get('/profile', (req, res) => {
     const { token } = req.cookies;
+    if (!token) {
+        return res.status(401).json({ error: 'Unauthorized' });
+    }
     jwt.verify(token, secret, {}, (err, info) => {
-        if (err) throw err;
+        if (err) {
+            return res.status(401).json({ error: 'Unauthorized' });
+        }
         res.json(info);
     });
 });
