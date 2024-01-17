@@ -51,7 +51,7 @@ export default function Header() {
           <Link to="/" className="logo">
             Blog
           </Link>
-          <span className="name">Hello @{username}!</span>
+          {username && (<span className="name">Hello @{username}!</span>)}
         </div>
         <div className={`hamburger-expanded ${showNav ? 'responsive_nav' : ''}`}>
           {username && (

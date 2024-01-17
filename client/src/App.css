@@ -46,7 +46,7 @@ header {
     font-weight: bold;
     font-size: 2.5rem;
     text-decoration: none;
-    color: inherit;
+    color: rgb(31, 77, 31);
 }
 
 header nav {
@@ -126,10 +126,6 @@ header nav {
 
     .logo {
         font-size: 2rem;
-    }
-
-    p {
-        font-size: 0.7rem;
     }
 
     p.summary {
