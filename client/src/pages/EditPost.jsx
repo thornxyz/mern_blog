@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import Editor from "../components/Editor";
+import serverUrl from "../config";
 
 const MAX_SUMMARY_CHARACTERS = 300;
 
@@ -19,7 +20,7 @@ export default function EditPost() {
 
 
   useEffect(() => {
-    fetch(`http://localhost:4000/post/${id}`).then((response) => {
+    fetch(`${serverUrl}/post/${id}`).then((response) => {
       response.json().then((postInfo) => {
         setTitle(postInfo.title);
         setContent(postInfo.content);
@@ -38,7 +39,7 @@ export default function EditPost() {
     if (files?.[0]) {
       data.set("file", files?.[0]);
     }
-    const response = await fetch(`http://localhost:4000/post/${id}`, {
+    const response = await fetch(`${serverUrl}/post/${id}`, {
       method: "PUT",
       body: data,
       credentials: "include",

@@ -9,7 +9,7 @@ const postRoutes = require('./routes/postRoutes.js');
 
 const app = express();
 
-app.use(cors({ credentials: true, origin: 'http://localhost:5173' }));
+app.use(cors({ credentials: true, origin: ['http://localhost:5173','https://blog-app-oqk5.onrender.com'] }));
 app.use(express.json());
 app.use(cookieParser());
 

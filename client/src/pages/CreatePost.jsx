@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import Editor from "../components/Editor";
+import serverUrl from "../config";
 
 const MAX_SUMMARY_CHARACTERS = 300;
 
@@ -38,7 +39,7 @@ export default function CreatePost() {
     data.set("file", file);
 
     try {
-      const response = await fetch("http://localhost:4000/post", {
+      const response = await fetch(`${serverUrl}/post`, {
         method: "POST",
         body: data,
         credentials: 'include',
