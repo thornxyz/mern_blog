@@ -18,19 +18,29 @@ export default function EditPost() {
     setSummary(truncatedSummary);
   };
 
-
   useEffect(() => {
-    fetch(`${serverUrl}/post/${id}`).then((response) => {
-      response.json().then((postInfo) => {
+    fetch(`${serverUrl}/post/${id}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Failed to fetch post: ${response.status} ${response.statusText}`
+          );
+        }
+        return response.json();
+      })
+      .then((postInfo) => {
         setTitle(postInfo.title);
         setContent(postInfo.content);
         setSummary(postInfo.summary);
+      })
+      .catch((error) => {
+        console.error("Error fetching post: ", error);
       });
-    });
   }, [id]);
 
   async function updatePost(ev) {
     ev.preventDefault();
+    setRedirect(true);
     const data = new FormData();
     data.set("title", title);
     data.set("summary", summary);
@@ -39,13 +49,19 @@ export default function EditPost() {
     if (files?.[0]) {
       data.set("file", files?.[0]);
     }
-    const response = await fetch(`${serverUrl}/post/${id}`, {
-      method: "PUT",
-      body: data,
-      credentials: "include",
-    });
-    if (response.ok) {
-      setRedirect(true);
+    try {
+      const response = await fetch(`${serverUrl}/post/${id}`, {
+        method: "PUT",
+        body: data,
+        credentials: "include",
+      });
+      if (!response.ok) {
+        console.error(
+          `Failed to update post: ${response.status} ${response.statusText}`
+        );
+      }
+    } catch (error) {
+      console.error("Error updating post: ", error);
     }
   }
 
