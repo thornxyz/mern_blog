@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
-import Editor from "../components/Editor";
+import TextEditor from "../components/TextEditor";
 import serverUrl from "../config";
 
 const MAX_SUMMARY_CHARACTERS = 300;
@@ -84,7 +84,7 @@ export default function EditPost() {
         onChange={(ev) => setSummaryWithLimit(ev.target.value)}
       />
       <input type="file" onChange={(ev) => setFiles(ev.target.files)} />
-      <Editor onChange={setContent} value={content} />
+      <TextEditor onChange={setContent} value={content} />
       <div className="edit-form-button">
         <button style={{ marginTop: "5px" }}>Update Post</button>
       </div>

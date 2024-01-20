@@ -24,8 +24,8 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-quill": "^2.0.0",
     "react-router-dom": "^6.21.2",
-    "react-spinners": "^0.13.8"
+    "react-spinners": "^0.13.8",
+    "@tinymce/tinymce-react": "^4.3.2"
   }
 }

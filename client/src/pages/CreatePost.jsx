@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
-import Editor from "../components/Editor";
+import TextEditor from "../components/TextEditor";
 import serverUrl from "../config";
 
 const MAX_SUMMARY_CHARACTERS = 300;
@@ -74,7 +74,7 @@ export default function CreatePost() {
         onChange={(ev) => setSummaryWithLimit(ev.target.value)}
       />
       <input type="file" onChange={(ev) => setFile(ev.target.files[0])} />
-      <Editor value={content} onChange={setContent} />
+      <TextEditor value={content} onChange={setContent} />
       <div className="create-button-form">
         <button type="submit" style={{ marginTop: "5px" }} disabled={isSubmitting}>{isSubmitting ? 'Creating Post...' : 'Create Post'}</button>
       </div>
